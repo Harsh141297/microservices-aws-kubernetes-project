@@ -1,9 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: coworking-space-service
-  label:
+  labels:
     name: coworking-space
 spec:
   selector:
@@ -11,14 +10,24 @@ spec:
       name: coworking-space
   template:
     metadata:
-      label:
+      labels:
         name: coworking-space
     spec:
+      imagePullSecrets:
+      - name: regcred
       containers:
       - name: coworking-space-service
-        image: nginx:1.14.2
+        image: 431054597332.dkr.ecr.us-east-1.amazonaws.com/coworking-app:0.0.1
         ports:
         - containerPort: 5153
-
-
-  
+        env:  # Environment variables section
+        - name: DB_USERNAME
+          value: "postgres"  # Replace <your-db-username> with the actual username
+        - name: DB_PASSWORD
+          value: "2KjpMuR8cY"  # Replace <your-db-password> with the actual password
+        - name: DB_HOST
+          value: "postgresql.default.svc.cluster.local"  # Default value, change if needed
+        - name: DB_PORT
+          value: "5432"  # Default value, change if needed
+        - name: DB_NAME
+          value: "postgres"  # Default value, change if needed
