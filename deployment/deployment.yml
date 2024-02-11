@@ -31,3 +31,6 @@ spec:
           value: "5432"  # Default value, change if needed
         - name: DB_NAME
           value: "postgres"  # Default value, change if needed
+
+
+
