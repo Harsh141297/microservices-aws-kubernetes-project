@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: coworking-space-service
+  label:
+    name: coworking-space
+spec:
+  selector:
+    matchLabels:
+      name: coworking-space
+  template:
+    metadata:
+      label:
+        name: coworking-space
+    spec:
+      containers:
+      - name: coworking-space-service
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 5153
+
+
+  
